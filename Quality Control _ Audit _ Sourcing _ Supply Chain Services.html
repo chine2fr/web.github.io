@@ -7,12 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Questrial:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 全局样式 */
+        /* 全局样式 - 移除统一字体设置，只保留后备 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Questrial', sans-serif;
+            /* 不再统一设置font-family，让各元素继承或单独定义 */
         }
         
         body {
@@ -43,6 +43,7 @@
             font-weight: 400;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-family: 'Questrial', sans-serif; /* 按钮保留Questrial */
         }
         
         .btn:hover {
@@ -55,6 +56,7 @@
             color: #000;
             text-align: center;
             margin-bottom: 20px;
+            font-family: 'Questrial', sans-serif;
         }
         
         .title-line {
@@ -69,6 +71,7 @@
             text-align: center;
             margin-bottom: 50px;
             font-weight: 400;
+            font-family: 'Questrial', sans-serif;
         }
         
         /* 导航栏样式 */
@@ -80,7 +83,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px 0;
+            padding: 0;
+            height: 90px;
             z-index: 1000;
             transition: all 0.3s ease;
             background-color: rgba(0, 0, 0, 0.3);
@@ -97,29 +101,35 @@
             position: relative;
             width: 100%;
             max-width: 1200px;
+            height: 100%;
+            gap: 50px;
         }
         
         .navbar-logo {
-            position: absolute;
-            left: 0;
+            display: flex;
+            align-items: center;
         }
         
         .navbar-logo img {
-            height: 40px;
+            height: 45px;
+            width: auto;
         }
         
         .navbar-menu {
             display: flex;
             gap: 40px;
+            align-items: center;
         }
         
         .navbar-menu a {
             color: white;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 400;
             padding-bottom: 5px;
             border-bottom: 2px solid transparent;
             transition: all 0.3s;
+            white-space: nowrap;
+            font-family: 'Questrial', sans-serif;
         }
         
         .navbar.scrolled .navbar-menu a {
@@ -141,19 +151,23 @@
             display: block;
         }
         
-        /* 英雄横幅通用样式 */
+        /* 英雄横幅通用样式 - 标题字体使用Do Hyeon (每个页面顶部) */
         .hero-banner {
             position: relative;
-            width: 100%;
-            height: 80vh;
-            min-height: 600px;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            height: auto;
+            min-height: 0;
             overflow: hidden;
         }
         
         .hero-banner img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
         
         .hero-overlay {
@@ -177,8 +191,9 @@
         }
         
         .hero-title {
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 45px;
+            font-family: 'Do Hyeon', sans-serif;  /* 所有页面顶部横幅标题强制Do Hyeon */
+            font-size: 50px;  /* 修改为50号，不加粗 (Do Hyeon默认可能为粗体，但这里设置不加粗) */
+            font-weight: 400;  /* 不加粗 */
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -198,14 +213,16 @@
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
+            font-family: 'Questrial', sans-serif; /* 副标题保留Questrial */
         }
         
-        /* 页脚样式 */
+        /* 页脚样式 - 修改部分 */
         footer {
             background-color: #000;
             color: white;
             padding: 60px 0 30px;
             font-weight: 300;
+            font-family: 'Questrial', sans-serif; /* 页脚整体使用Questrial */
         }
         
         .footer-container {
@@ -221,6 +238,14 @@
             margin-bottom: 20px;
         }
         
+        .footer-logo p {
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 300px;
+            color: #fff;
+            font-family: 'Questrial', sans-serif;
+        }
+        
         .footer-links {
             display: flex;
             flex-direction: column;
@@ -230,6 +255,7 @@
         .footer-links a {
             font-size: 16px;
             transition: color 0.3s;
+            font-family: 'Questrial', sans-serif;
         }
         
         .footer-links a:hover {
@@ -239,6 +265,7 @@
         .footer-contact p {
             margin-bottom: 10px;
             font-size: 16px;
+            font-family: 'Questrial', sans-serif;
         }
         
         .footer-bottom {
@@ -246,10 +273,10 @@
             padding-top: 20px;
             border-top: 1px solid #333;
             font-size: 14px;
+            font-family: 'Questrial', sans-serif;
         }
         
         /* HOME页面特定样式 */
-        /* Key Advantages卡片 */
         .key-cards {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -263,6 +290,7 @@
             padding: 30px;
             border-bottom: 6px solid #FE8100;
             transition: transform 0.3s;
+            font-family: 'Questrial', sans-serif;
         }
         
         .key-card:hover {
@@ -301,17 +329,27 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-bottom: 6px solid #FE8100;
             overflow: hidden;
-            transition: box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            top: 0;
+            font-family: 'Questrial', sans-serif;
         }
         
         .service-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            border-bottom-width: 8px;
         }
         
         .service-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.08);
         }
         
         .service-card-content {
@@ -320,31 +358,37 @@
         }
         
         .service-card-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 15px;
         }
         
         .service-card-text {
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 20px;
-            line-height: 1.6;
-            height: 68px;
+            line-height: 1.7;
+            height: 70px;
             overflow: hidden;
         }
         
         /* Together section */
         .together-section {
             position: relative;
-            width: 100%;
-            height: 400px;
-            margin: 60px 0;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            height: auto;
+            min-height: 0;
+            margin-top: 60px;
+            margin-bottom: 60px;
         }
         
         .together-section img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
         
         .together-overlay {
@@ -365,6 +409,9 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             text-align: center;
+            position: relative;
+            top: 20px;
+            font-family: 'Questrial', sans-serif;
         }
         
         /* Team卡片 */
@@ -381,6 +428,7 @@
             padding: 30px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Questrial', sans-serif;
         }
         
         .team-card:hover {
@@ -432,6 +480,7 @@
             padding: 40px;
             background-color: white;
             text-align: center;
+            font-family: 'Questrial', sans-serif;
         }
         
         .stars {
@@ -494,12 +543,12 @@
         .client-slide img {
             width: 100%;
             height: auto;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
+            filter: none;
+            transition: opacity 0.3s;
         }
         
         .client-slide img:hover {
-            filter: grayscale(0%);
+            opacity: 0.9;
         }
         
         @keyframes scroll {
@@ -508,10 +557,20 @@
         }
         
         /* ABOUT页面样式 */
+        .about-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 60px 0;
+        }
+        
         .about-content {
             display: flex;
             gap: 40px;
-            margin: 60px 0;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .about-main {
@@ -537,16 +596,20 @@
         }
         
         .about-section-title {
-            font-size: 36px;
+            font-size: 30px;
             font-weight: 700;
             text-align: center;
             margin-bottom: 20px;
+            font-family: 'Questrial', sans-serif;
         }
         
         .about-section-text {
-            font-size: 14px;
+            font-size: 16px;  /* 修改为16号 */
             line-height: 1.8;
             margin-bottom: 30px;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
         }
         
         .about-image {
@@ -572,17 +635,45 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 30px;
             transition: transform 0.3s;
+            font-family: 'Questrial', sans-serif;
+            position: relative;  /* 为了伪元素定位 */
+            border-bottom: none;  /* 移除可能存在的border-bottom */
+            text-align: center;   /* 确保卡片内容居中 */
         }
         
         .why-card:hover {
             transform: translateY(-10px);
         }
+        /* 卡片底边从中间向两边延伸的粗底线 #FE8100 */
+        .why-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 6px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .why-card:hover::after {
+            width: 100%;
+            left: 0;
+        }
         
         .why-card-icon {
             font-size: 40px;
             color: #FE8100;
-            text-align: center;
             margin-bottom: 20px;
+            /* 圆形外框 + 居中 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #FE8100;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .why-card-title {
@@ -593,16 +684,27 @@
         }
         
         .why-card-text {
-            font-size: 14px;
+            font-size: 16px;  /* 修改为16号 */
             line-height: 1.8;
-            text-indent: 2em;
+            text-align: justify;
+            text-justify: inter-word;
         }
         
         /* 服务页面通用样式 */
+        .service-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 60px 0;
+        }
+        
         .service-content {
             display: flex;
             gap: 40px;
-            margin: 60px 0;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         .service-main {
@@ -623,94 +725,797 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        .service-details {
-            margin-bottom: 40px;
-        }
-        
-        .service-details h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #FE8100;
-        }
-        
-        .service-details p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .service-details ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .service-details li {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        /* CONTACT页面样式 */
-        .contact-form-container {
-            display: flex;
-            gap: 60px;
-            margin: 60px 0;
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            font-size: 16px;
+        /* ===== INSPECTION 页面 ===== */
+        .quality-section {
             font-family: 'Questrial', sans-serif;
         }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
+        .quality-section-header {
+            text-align: center;
+            margin: 20px 0 30px;
         }
-        
-        .contact-info h3 {
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: #FE8100;
+        .quality-section-title {
+            font-family: 'Questrial', sans-serif;
+            font-weight: 700;
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 15px;
         }
-        
-        .contact-detail {
-            margin-bottom: 25px;
+        .quality-title-line {
+            width: 80px;
+            height: 5px;
+            background-color: #FE8100;
+            margin: 0 auto 30px;
         }
-        
-        .contact-detail h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        
-        .contact-detail p {
+        .quality-subtitle {
+            font-family: 'Questrial', sans-serif;
+            font-weight: 700;
             font-size: 16px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .quality-text {
+            font-family: 'Questrial', sans-serif;
+            font-weight: 400;
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .quality-image-width-600 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .quality-image-width-600 img {
+            width: 600px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0;
+            display: block;
+            box-shadow: none;
+        }
+        .quality-image-full {
+            width: 100%;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .quality-image-full img {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .quality-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0 30px;
+        }
+        .quality-card {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px 25px;
+            border: none;
+            border-radius: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative; /* 用于伪元素 */
+        }
+        .quality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        /* 卡片底边从中间向两边延伸的粗底线 #FE8100 */
+        .quality-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 6px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .quality-card:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .quality-card-icon {
+            font-size: 32px;
+            color: #FE8100;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border: 2px solid #FE8100;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+        .quality-card-icon i {
+            font-size: 32px;
+        }
+        .quality-card-title {
+            font-family: 'Questrial', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.4;
+        }
+        .quality-card-text {
+            font-family: 'Questrial', sans-serif;
+            font-weight: 400;
+            font-size: 16px;  /* 修改为16号 */
             line-height: 1.6;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        .quality-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 50px 0 30px;
+        }
+        .quality-contact-btn {
+            display: inline-block;
+            background-color: #FE8100;
+            color: white;
+            font-family: 'Questrial', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 12px 40px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .quality-contact-btn:hover {
+            background-color: #e57200;
+        }
+
+        /* ===== AUDIT 页面 ===== */
+        .audit-section {
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-main-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-title-line {
+            width: 80px;
+            height: 5px;
+            background-color: #FE8100;
+            margin: 0 auto 40px;
+        }
+        .audit-subtitle {
+            font-weight: 700;
+            font-size: 16px;
+            margin: 30px 0 15px;
+            color: #333;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-text {
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-image-500 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .audit-image-500 img {
+            width: 500px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: none;
+        }
+        .audit-image-full {
+            width: 100%;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .audit-image-full img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .audit-full-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.55);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 45px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            padding: 20px;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0 30px;
+        }
+        .audit-card {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px 25px;
+            border: none;
+            border-radius: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative; /* 用于伪元素 */
+        }
+        .audit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        /* 卡片底边从中间向两边延伸的粗底线 #FE8100 */
+        .audit-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 6px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .audit-card:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .audit-card-icon {
+            font-size: 32px;
+            color: #FE8100;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border: 2px solid #FE8100;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+        .audit-card-icon i {
+            font-size: 32px;
+        }
+        .audit-card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.4;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-card-text {
+            font-weight: 400;
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
+        }
+        .audit-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 50px;
+        }
+        .audit-contact-btn {
+            display: inline-block;
+            background-color: #FE8100;
+            color: white;
+            font-family: 'Questrial', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 12px 40px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .audit-contact-btn:hover {
+            background-color: #e57200;
+        }
+
+        /* ===== SOURCING 页面 ===== */
+        .sourcing-section {
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-main-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-title-line {
+            width: 80px;
+            height: 5px;
+            background-color: #FE8100;
+            margin: 0 auto 40px;
+        }
+        .sourcing-subtitle {
+            font-weight: 700;
+            font-size: 16px;
+            margin: 30px 0 15px;
+            color: #333;
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-text {
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0 30px;
+        }
+        .sourcing-card {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px 25px;
+            border: none;
+            border-radius: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative; /* 用于伪元素 */
+        }
+        .sourcing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        /* 卡片底边从中间向两边延伸的粗底线 #FE8100 */
+        .sourcing-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 6px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .sourcing-card:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .sourcing-card-icon {
+            font-size: 32px;
+            color: #FE8100;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border: 2px solid #FE8100;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+        .sourcing-card-icon i {
+            font-size: 32px;
+        }
+        .sourcing-card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.4;
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-card-text {
+            font-weight: 400;
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.6;
+            color: #555;
+            text-align: center;
+            font-family: 'Questrial', sans-serif;
+        }
+        .sourcing-steps {
+            margin: 20px 0 30px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 16px;  /* 修改为16号 */
+            color: #555;
+            font-family: 'Questrial', sans-serif;
+        }
+        .step-icon {
+            color: #FE8100;
+            font-size: 16px;
+            min-width: 20px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .step-text {
+            line-height: 1.6;
+            text-align: left;
+        }
+        .sourcing-image-full {
+            width: 100%;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .sourcing-image-full img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .sourcing-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 50px;
+        }
+        .sourcing-contact-btn {
+            display: inline-block;
+            background-color: #FE8100;
+            color: white;
+            font-family: 'Questrial', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 12px 40px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .sourcing-contact-btn:hover {
+            background-color: #e57200;
+        }
+
+        /* ===== TRADE 页面 ===== */
+        .trade-section {
+            font-family: 'Questrial', sans-serif;
+        }
+        .trade-main-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Questrial', sans-serif;
+        }
+        .trade-title-line {
+            width: 80px;
+            height: 5px;
+            background-color: #FE8100;
+            margin: 0 auto 35px;
+        }
+        .trade-text {
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
+        }
+        .trade-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 16px;  /* 修改为16号 */
+            color: #333;
+            font-family: 'Questrial', sans-serif;
+        }
+        .trade-check-icon {
+            color: #FE8100;
+            font-size: 14px;
+            min-width: 20px;
+            text-align: center;
+            margin-top: 3px;
+        }
+        .trade-check-text {
+            line-height: 1.5;
+        }
+        .trade-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0 30px;
+        }
+        .trade-card {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            font-family: 'Questrial', sans-serif;
+            position: relative; /* 用于伪元素 */
+        }
+        .trade-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        /* 卡片底边从中间向两边延伸的粗底线 #FE8100 */
+        .trade-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 6px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .trade-card:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .trade-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .trade-card-content {
+            padding: 20px 15px 25px;
+        }
+        .trade-card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .trade-card-text {
+            font-weight: 400;
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+        }
+        .trade-image-full {
+            width: 100%;
+            margin: 40px 0 30px;
+        }
+        .trade-image-full img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .trade-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 50px;
+        }
+        .trade-contact-btn {
+            display: inline-block;
+            background-color: #FE8100;
+            color: white;
+            font-family: 'Questrial', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 12px 40px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .trade-contact-btn:hover {
+            background-color: #e57200;
+        }
+        .trade-checklist {
+            margin: 20px 0 30px;
+        }
+
+        /* ===== CONTACT 页面全新样式 ===== */
+        .contact-section {
+            font-family: 'Questrial', sans-serif;
+            padding: 40px 0 0;  /* 底部内边距改为0，使图片紧贴页脚 */
+        }
+        .contact-main-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Questrial', sans-serif;
+        }
+        .contact-title-line {
+            width: 80px;
+            height: 5px;
+            background-color: #FE8100;
+            margin: 0 auto 30px;
+        }
+        .contact-description {
+            font-size: 16px;  /* 修改为16号 */
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Questrial', sans-serif;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* 联系信息卡片网格 */
+        .contact-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .contact-card-item {
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 40px 20px;
+            border: none;
+            border-radius: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            font-family: 'Questrial', sans-serif;
+        }
+        .contact-card-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+        }
+        /* 底边从中间向两边延伸的效果 */
+        .contact-card-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 5px;
+            background-color: #FE8100;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .contact-card-item:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .contact-card-icon {
+            font-size: 32px;
+            color: #FE8100;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #FE8100;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+        .contact-card-icon i {
+            font-size: 36px;
+        }
+        .contact-card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .contact-card-detail {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+        /* 全宽图片容器 (用于contact页面底部) */
+        .contact-image-full {
+            width: 100vw;            /* 与浏览器宽度一致 */
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: 40px;        
+            margin-bottom: 0;         /* 底部间距为0，与页脚紧贴 */
+            line-height: 0;           /* 移除图片下方可能的空隙 */
+            font-size: 0;             /* 移除图片下方可能的空隙 */
+        }
+        .contact-image-full img {
+            width: 100%;
+            height: auto;
+            display: block;           /* 确保图片块级显示，无间隙 */
+        }
+        .contact-image-overlay-text {
+            position: absolute;
+            top: 50px;                /* 原40px + 下移10px = 50px */
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 40px;           /* 40号 */
+            font-weight: 700;
+            font-family: 'Questrial', sans-serif;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.8); /* 加强阴影 */
+            white-space: nowrap;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
         }
         
-        /* 响应式设计 */
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .contact-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .audit-card-grid, .sourcing-card-grid, .trade-card-grid {
+                grid-template-columns: 1fr;
+            }
+            .audit-image-500 img {
+                width: 100%;
+            }
+            .audit-full-overlay {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-card-grid {
+                grid-template-columns: 1fr;
+            }
+            .audit-full-overlay {
+                font-size: 24px;
+            }
+            .contact-image-overlay-text {
+                font-size: 32px;
+                top: 40px;
+            }
+        }
+        
         @media (max-width: 1200px) {
             .key-cards, .service-cards, .team-cards {
                 grid-template-columns: repeat(2, 1fr);
@@ -719,10 +1524,17 @@
             .why-cards {
                 grid-template-columns: 1fr;
             }
+
+            .navbar-container {
+                gap: 30px;
+            }
+            .navbar-menu {
+                gap: 30px;
+            }
         }
         
         @media (max-width: 992px) {
-            .about-content, .service-content, .contact-form-container {
+            .about-content, .service-content {
                 flex-direction: column;
             }
             
@@ -738,11 +1550,41 @@
             .section-title {
                 font-size: 36px;
             }
+
+            .navbar {
+                height: 80px;
+            }
+            .navbar-menu a {
+                font-size: 16px;
+            }
+            .navbar-container {
+                gap: 25px;
+            }
+            .navbar-menu {
+                gap: 25px;
+            }
+
+            .hero-title {
+                font-size: 40px;  /* 响应式调整保持比例 */
+            }
+            .together-text {
+                font-size: 32px;
+            }
         }
         
         @media (max-width: 768px) {
+            .navbar-container {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .navbar-logo {
+                margin-right: 0;
+            }
             .navbar-menu {
                 gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .key-cards, .service-cards, .team-cards {
@@ -754,11 +1596,12 @@
             }
             
             .hero-text {
-                font-size: 28px;
+                font-size: 24px;
             }
             
             .together-text {
-                font-size: 32px;
+                font-size: 28px;
+                top: 15px;
             }
             
             .footer-container {
@@ -768,25 +1611,38 @@
             .client-slide {
                 flex: 0 0 50%;
             }
+
+            .navbar {
+                height: auto;
+                min-height: 70px;
+                padding: 10px 0;
+            }
+            .navbar-menu a {
+                font-size: 15px;
+            }
+            .navbar-logo img {
+                height: 35px;
+            }
         }
         
         @media (max-width: 576px) {
-            .navbar-menu {
+            .navbar-container {
                 gap: 15px;
-                font-size: 14px;
+                flex-direction: column;
             }
-            
-            .hero-banner {
-                height: 70vh;
-                min-height: 500px;
+            .navbar-menu {
+                gap: 12px;
+            }
+            .navbar-menu a {
+                font-size: 13px;
             }
             
             .hero-title {
-                font-size: 28px;
+                font-size: 30px;
             }
             
             .hero-text {
-                font-size: 24px;
+                font-size: 18px;
             }
             
             .section-title {
@@ -794,17 +1650,26 @@
             }
             
             .together-text {
-                font-size: 24px;
+                font-size: 22px;
+                top: 10px;
             }
             
             .client-slide {
                 flex: 0 0 100%;
             }
+
+            .navbar {
+                height: auto;
+                min-height: 60px;
+            }
+            .navbar-logo img {
+                height: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏 (保持不变) -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
@@ -824,13 +1689,14 @@
         </div>
     </nav>
 
-    <!-- HOME 页面 -->
-    <section id="home" class="page active">
+    <!-- HOME 页面 (保持不变) -->
+    <section id="home" class="page">
         <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769310934172.jpg" alt="Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 下移150px (保持不变) -->
+            <div class="hero-content" style="transform: translate(-50%, calc(-50% + 150px));">
                 <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">Your reliable quality service agency for the supply chain!</p>
                 <a href="#" onclick="showPage('about')" class="btn">Read more...</a>
@@ -839,7 +1705,7 @@
 
         <!-- 简介部分 -->
         <div class="container" style="padding: 60px 20px;">
-            <p style="text-indent: 2em; margin-bottom: 30px; font-size: 16px; line-height: 1.8;">
+            <p style="text-indent: 2em; margin-bottom: 30px; font-size: 16px; line-height: 1.8; font-family: 'Questrial', sans-serif;">
                 INSPECTION-CHINA is a third-party quality services company. We provide a comprehensive range of quality inspection, factory audit, and technical consultation services, leveraging our professional expertise. During inspections and audits, all client instructions are strictly followed. We deliver accurate and reliable first-hand information to our clients, serving as their eyes and ears.
             </p>
             <div style="text-align: center;">
@@ -1085,407 +1951,517 @@
         </div>
     </section>
 
-    <!-- ABOUT 页面 -->
+    <!-- ABOUT 页面 (保持不变) -->
     <section id="about" class="page">
         <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769354502669.jpg" alt="About Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 左移300px (保持不变) -->
+            <div class="hero-content" style="transform: translate(calc(-50% - 300px), -50%);">
                 <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">Your quality service expert</p>
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="container about-content">
-            <div class="about-main">
-                <!-- Who are we -->
-                <div class="about-section">
-                    <h2 class="about-section-title">Who are we</h2>
-                    <div class="title-line" style="margin: 0 auto 30px;"></div>
-                    
-                    <p class="about-section-text">
-                        INSPECTION-CHINA is a third-party quality services company. We provide a comprehensive range of quality inspection, factory audit, and technical consultation services, leveraging our professional expertise. During inspections and audits, all client instructions are strictly followed. We deliver accurate and reliable first-hand information to our clients, serving as their eyes and ears.
-                    </p>
-                    
-                    <div class="about-image">
-                        <img src="https://img.dx.de5.net/1769440002938.jpg" alt="About Image 1">
+        <!-- 主要内容区 (保持不变) -->
+        <div class="about-wrapper">
+            <div class="about-content">
+                <div class="about-main">
+                    <!-- Who are we -->
+                    <div class="about-section">
+                        <h2 class="about-section-title">Who are we</h2>
+                        <div class="title-line" style="margin: 0 auto 30px;"></div>
+                        
+                        <p class="about-section-text">
+                            INSPECTION-CHINA is a third-party quality services company. We provide a comprehensive range of quality inspection, factory audit, and technical consultation services, leveraging our professional expertise. During inspections and audits, all client instructions are strictly followed. We deliver accurate and reliable first-hand information to our clients, serving as their eyes and ears.
+                        </p>
+                        
+                        <div class="about-image">
+                            <img src="https://img.dx.de5.net/1769440002938.jpg" alt="About Image 1">
+                        </div>
+                        
+                        <p class="about-section-text">
+                            In addition to quality inspection and audit services, our sourcing and trade assistance are also highly valued by our clients---particularly import companies and entrepreneurs. With an experienced team supporting every step, we ensure our clients enjoy a smooth and worry-free purchasing and production process in China.
+                        </p>
+                        
+                        <div class="about-image">
+                            <img src="https://img.dx.de5.net/1769440245891.jpg" alt="About Image 2">
+                        </div>
+                        
+                        <p class="about-section-text">
+                            Our customized solutions are designed to ensure that products meet industry standards, are manufactured according to client specifications, and fulfill consumer expectations.
+                        </p>
+                        
+                        <p class="about-section-text">
+                            As an independent third-party service provider, INSPECTION-CHINA acts as your extended Quality Assurance and Technical team in China. We consistently collaborate with our clients, offering consultation and working alongside them throughout the process.
+                        </p>
+                        
+                        <div class="about-image">
+                            <img src="https://img.dx.de5.net/1769440445149.jpg" alt="About Image 3">
+                        </div>
+                        <!-- 图片下方文字 -->
+                        <p class="about-section-text" style="margin-top: 10px;">
+                            Our operations are strategically centered in most major industrial cities across China, including key manufacturing hubs such as Ningbo, Shanghai, Hangzhou, Shenzhen, Qingdao, Guangzhou, Dongguan, Xiamen, Suzhou, and more. This extensive geographical presence allows us to maintain close proximity to suppliers and factories, ensuring fast response times and reduced travel costs.
+                        </p>
+                        <p class="about-section-text">
+                            Thanks to our widespread network of experienced inspectors, we are able to dispatch a qualified professional to any factory location in China within 72 hours of your request. Whether your supplier is located in a major city or a remote industrial zone, our team can be on-site quickly to conduct thorough inspections or audits.
+                        </p>
+                        <p class="about-section-text">
+                            Following the visit, we provide a detailed inspection or audit report within 24 hours, enabling you to make timely, informed decisions. Our reports are clear, objective, and tailored to your specific quality or compliance requirements—helping you mitigate risk and maintain control over your supply chain without leaving your desk.
+                        </p>
                     </div>
-                    
-                    <p class="about-section-text">
-                        In addition to quality inspection and audit services, our sourcing and trade assistance are also highly valued by our clients---particularly import companies and entrepreneurs. With an experienced team supporting every step, we ensure our clients enjoy a smooth and worry-free purchasing and production process in China.
-                    </p>
-                    
-                    <div class="about-image">
-                        <img src="https://img.dx.de5.net/1769440245891.jpg" alt="About Image 2">
-                    </div>
-                    
-                    <p class="about-section-text">
-                        Our customized solutions are designed to ensure that products meet industry standards, are manufactured according to client specifications, and fulfill consumer expectations.
-                    </p>
-                    
-                    <p class="about-section-text">
-                        As an independent third-party service provider, INSPECTION-CHINA acts as your extended Quality Assurance and Technical team in China. We consistently collaborate with our clients, offering consultation and working alongside them throughout the process.
-                    </p>
-                    
-                    <div class="about-image">
-                        <img src="https://img.dx.de5.net/1769440445149.jpg" alt="About Image 3">
-                    </div>
-                </div>
 
-                <!-- Why choose us -->
-                <div class="about-section">
-                    <h2 class="about-section-title">Why choose us</h2>
-                    <div class="title-line" style="margin: 0 auto 30px;"></div>
-                    
-                    <p class="about-section-text">
-                        Our success is built upon a dual foundation: the steadfast trust and partnership of our clients, and the deeply held core values that guide every member of our team. These principles---integrity, excellence, and collaborative success---not only shape our internal culture but also directly translate into the reliable, high-quality service we deliver. It is this synergy between external confidence and internal commitment that fuels our continuous growth and achievement.
-                    </p>
-                    
-                    <div class="why-cards">
-                        <!-- 卡片1 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-industry"></i></div>
-                            <h3 class="why-card-title">Industry Expertise</h3>
-                            <p class="why-card-text">The INSPECTION-CHINA team possesses extensive expertise across diverse sectors, including machinery, textiles, footwear, plastics, furniture, kitchenware, home appliances, toys, fashion, stationery, and promotional products. We provide targeted recommendations from the initial stage of engagement. Our engineers are adept at developing efficient, practical solutions tailored to the specific conditions of your project.</p>
+                    <!-- Why choose us -->
+                    <div class="about-section">
+                        <h2 class="about-section-title">Why choose us</h2>
+                        <div class="title-line" style="margin: 0 auto 30px;"></div>
+                        
+                        <p class="about-section-text">
+                            Our success is built upon a dual foundation: the steadfast trust and partnership of our clients, and the deeply held core values that guide every member of our team. These principles---integrity, excellence, and collaborative success---not only shape our internal culture but also directly translate into the reliable, high-quality service we deliver. It is this synergy between external confidence and internal commitment that fuels our continuous growth and achievement.
+                        </p>
+                        
+                        <div class="why-cards">
+                            <!-- 卡片1 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-industry"></i></div>
+                                <h3 class="why-card-title">Industry Expertise</h3>
+                                <p class="why-card-text">The INSPECTION-CHINA team has extensive expertise across diverse industries, including machinery, textiles, footwear, plastics, furniture, and more. We provide targeted recommendations from the very first stage of engagement. Our engineers develop efficient, practical solutions tailored to the specific conditions of your project.</p>
+                            </div>
+                            <!-- 卡片2 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-eye"></i></div>
+                                <h3 class="why-card-title">Transparency</h3>
+                                <p class="why-card-text">INSPECTION-CHINA maintains full transparency in all supplier communications. Clients are promptly updated following any discussion with suppliers. We immediately report any irregularities identified during inspections or routine communications, ensuring no information is ever withheld from our clients.</p>
+                            </div>
+                            <!-- 卡片3 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-clock"></i></div>
+                                <h3 class="why-card-title">Timing</h3>
+                                <p class="why-card-text">INSPECTION-CHINA strictly adheres to all agreed service timelines. Delays in operations or report delivery are not permitted under any circumstances. We provide detailed inspection reports—complete with photos and videos—within 24 hours. For urgent requests, a comprehensive report is delivered within 8 hours of task completion.</p>
+                            </div>
+                            <!-- 卡片4 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-language"></i></div>
+                                <h3 class="why-card-title">Linguistic Skill</h3>
+                                <p class="why-card-text">In addition to English, our primary working language, INSPECTION-CHINA has team members fluent in Japanese, French, and Italian. This multilingual capability ensures clear, seamless communication between clients and suppliers. We effectively eliminate any language barriers throughout the entire process.</p>
+                            </div>
+                            <!-- 卡片5 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-lock"></i></div>
+                                <h3 class="why-card-title">Confidentiality</h3>
+                                <p class="why-card-text">Protecting business and industrial secrets is a fundamental and unwavering principle at INSPECTION-CHINA. Our team strictly upholds this critical commitment before, during, and after every service delivery. All client information, sensitive product details, and confidential supplier contacts are never disclosed to any outside third party.</p>
+                            </div>
+                            <!-- 卡片6 -->
+                            <div class="why-card">
+                                <div class="why-card-icon"><i class="fas fa-handshake"></i></div>
+                                <h3 class="why-card-title">Reliability</h3>
+                                <p class="why-card-text">INSPECTION-CHINA guarantees that no undisclosed agreements are made with suppliers, and we enforce strict procedures to prevent commercial bribery. In trade assistance services, we derive no profit from client-supplier transactions. Our compensation is solely the service fee paid by the client, ensuring impartial and trustworthy support.</p>
+                            </div>
                         </div>
-                        <!-- 卡片2 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-eye"></i></div>
-                            <h3 class="why-card-title">Transparency</h3>
-                            <p class="why-card-text">INSPECTION-CHINA maintains full transparency in all supplier communications. Clients are promptly updated following any discussion with suppliers. We immediately report any irregularities identified during inspections or routine communications, ensuring no information is withheld between our team and the client.</p>
+                        
+                        <div style="text-align: center; margin-top: 40px;">
+                            <a href="#" onclick="showPage('contact')" class="btn">Contact us</a>
                         </div>
-                        <!-- 卡片3 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-clock"></i></div>
-                            <h3 class="why-card-title">Timing</h3>
-                            <p class="why-card-text">INSPECTION-CHINA strictly adheres to all agreed service timelines. Delays in operations or report delivery are not permitted. We provide detailed inspection reports---complete with photos and videos---within 24 hours. For urgent requests, a comprehensive report can be delivered within 8 hours of task completion.</p>
-                        </div>
-                        <!-- 卡片4 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-language"></i></div>
-                            <h3 class="why-card-title">Linguistic Skill</h3>
-                            <p class="why-card-text">In addition to English, our standard working language, INSPECTION-CHINA has team members fluent in Japanese, French, and Italian. This multilingual capability ensures clear, seamless communication between clients and suppliers, eliminating any language barriers throughout the process.</p>
-                        </div>
-                        <!-- 卡片5 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-lock"></i></div>
-                            <h3 class="why-card-title">Confidentiality</h3>
-                            <p class="why-card-text">Protecting business and industrial secrets is a fundamental principle at INSPECTION-CHINA. Our team strictly upholds this commitment before, during, and after service delivery. Client information, product details, supplier contacts, and trade data are never disclosed to any third party.</p>
-                        </div>
-                        <!-- 卡片6 -->
-                        <div class="why-card">
-                            <div class="why-card-icon"><i class="fas fa-handshake"></i></div>
-                            <h3 class="why-card-title">Reliability</h3>
-                            <p class="why-card-text">INSPECTION-CHINA guarantees that no undisclosed agreements are made with suppliers, and we enforce strict procedures to prevent commercial bribery. In trade assistance services, we derive no profit from client-supplier transactions. Our compensation is solely the service fee paid by the client, ensuring impartial and trustworthy support.</p>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="#" onclick="showPage('contact')" class="btn">Contact us</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 侧边栏 -->
-            <div class="about-sidebar">
-                <a href="#" onclick="showPage('contact')">
-                    <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
-                </a>
+                
+                <!-- 侧边栏 -->
+                <div class="about-sidebar">
+                    <a href="#" onclick="showPage('contact')">
+                        <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- INSPECTION 页面 -->
+    <!-- INSPECTION 页面 (文字下移80px，保持不变) -->
     <section id="inspection" class="page">
         <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769868309302.jpg" alt="Inspection Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 下移80px -->
+            <div class="hero-content" style="transform: translate(-50%, calc(-50% + 80px));">
+                <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">We are your eyes in supply chain</p>
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="container service-content">
-            <div class="service-main">
-                <h2 class="section-title">Inspection Services</h2>
-                <div class="title-line" style="margin: 0 auto 30px;"></div>
-                
-                <div class="service-details">
-                    <p>Our inspection services provide comprehensive quality control throughout your supply chain. We ensure that every product meets your specifications and quality standards before shipment.</p>
+        <!-- 主要内容区 (保持不变) -->
+        <div class="service-wrapper">
+            <div class="service-content">
+                <div class="service-main quality-section">
+                    <div class="quality-section-header">
+                        <h2 class="quality-section-title">Quality Inspection Services</h2>
+                        <div class="quality-title-line"></div>
+                    </div>
+                    <h3 class="quality-subtitle">What is Quality Inspection?</h3>
+                    <p class="quality-text">Quality Inspection, often referred to as Quality Control (QC), is a systematic process designed to ensure that manufactured products or delivered services consistently adhere to predefined quality standards and meet customer or client specifications. It serves as a critical checkpoint to verify safety, functionality, reliability, and overall compliance before goods reach the market.</p>
+                    <p class="quality-text">As product quality has become a decisive competitive factor in the global marketplace, an increasing number of importers and buyers—especially international brands—now mandate formal quality inspection for their orders sourced from China. Implementing structured QC helps safeguard brand reputation, reduce returns, and ensure customer satisfaction.</p>
+                    <p class="quality-text">To maintain consistent quality and minimize defect rates during mass production, many clients opt for <strong>During-Production Inspection (DPI)</strong>. This proactive approach allows for early identification and correction of issues while production is still underway, preventing costly surprises and delays just before shipment. DPI is widely regarded as one of the most effective strategies to control quality at source.</p>
+
+                    <h3 class="quality-subtitle">Our Quality Inspection Procedure</h3>
+                    <p class="quality-text">To conduct objective, consistent, and efficient quality inspections, INSPECTION-CHINA has developed a clearly defined operational procedure that standardizes the workflow and actions of every inspector. Our process ensures transparency, accuracy, and reliability at each stage.</p>
+                    <p class="quality-text">Prior to the inspection, we share detailed inspection standards and checklists with the supplier. This ensures they are fully aware of all critical quality requirements, enabling them to align production processes accordingly and reduce potential defects early on. By fostering clear communication and expectation-setting from the outset, we help suppliers improve their internal quality management and support smoother, more compliant production runs.</p>
                     
-                    <h3>Our Inspection Process</h3>
-                    <p>1. <strong>Pre-Production Inspection:</strong> Verify raw materials and production readiness before manufacturing begins.</p>
-                    <p>2. <strong>During Production Inspection:</strong> Monitor production processes to identify issues early and ensure quality control.</p>
-                    <p>3. <strong>Final Random Inspection:</strong> Check finished products against your specifications before shipment.</p>
-                    <p>4. <strong>Container Loading Supervision:</strong> Ensure correct products are loaded in proper condition and quantity.</p>
-                    
-                    <h3>Benefits of Our Inspection Services</h3>
-                    <ul>
-                        <li>Early detection of quality issues</li>
-                        <li>Reduced risk of receiving defective products</li>
-                        <li>Improved supplier performance</li>
-                        <li>Detailed reports with photos and videos</li>
-                        <li>Timely delivery of inspection results</li>
-                    </ul>
-                    
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="#" onclick="showPage('contact')" class="btn">Contact us for Inspection</a>
+                    <div class="quality-image-width-600">
+                        <img src="https://img.dx.de5.net/1770531031776.jpg" alt="Quality Inspection Procedure">
+                    </div>
+
+                    <h3 class="quality-subtitle">Types of Quality Inspection Services</h3>
+                    <p class="quality-text">INSPECTION-CHINA offers a comprehensive range of quality inspection services tailored to meet diverse client needs at every stage of production. We provide flexible and scalable solutions—from pre-production checks to final random inspections—ensuring quality control is seamlessly integrated into your supply chain.</p>
+                    <p class="quality-text">Our team can promptly organize on-site quality control interventions based on your specific requirements and instructions. Whether you need an initial production check, a during-production inspection, or a pre-shipment verification, we execute with efficiency and precision.</p>
+                    <p class="quality-text">Within 24 hours after each inspection, you will receive a detailed report complete with clear photographs or video evidence, highlighting both conformities and any non-conformities found. Should any critical issues arise during the inspection, our qualified inspector will contact you immediately to discuss findings and recommend corrective actions—ensuring you stay informed and in control throughout the process.</p>
+
+                    <div class="quality-card-grid">
+                        <div class="quality-card">
+                            <div class="quality-card-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <h4 class="quality-card-title">Pre-Production Inspection (PPI)</h4>
+                            <p class="quality-card-text">Pre-Production Inspection (PPI) serves as a crucial verification step to ensure that the supplier fully complies with all specifications and requirements before mass production begins. This inspection is conducted during the production preparation phase, once materials and initial setups are ready. Suppliers may proceed with full-scale manufacturing only after a satisfactory PPI result is confirmed, helping to prevent issues before they escalate.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-card-icon"><i class="fas fa-industry"></i></div>
+                            <h4 class="quality-card-title">During-Production Inspection (DPI)</h4>
+                            <p class="quality-card-text">During-Production Inspection (DPI) provides ongoing, objective monitoring to track production progress in real time and verify that all requirements and instructions are being accurately followed by the supplier. Typically carried out when 20–25% of production is complete, this phase allows for early detection of deviations, enabling timely corrections and ensuring consistent quality control throughout the entire manufacturing cycle.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-card-icon"><i class="fas fa-ship"></i></div>
+                            <h4 class="quality-card-title">Pre-Shipment Inspection (PSI)</h4>
+                            <p class="quality-card-text">Pre-Shipment Inspection (PSI) serves as the final, comprehensive quality check performed on fully finished and packaged goods prior to shipment. Generally conducted on 90–100% of the ready products according to client specifications, this critical inspection verifies strict conformity to all technical requirements and overall shipment readiness. Upon receiving the detailed inspection report, the client can confidently make an informed and timely decision regarding shipment approval or initiate any necessary corrective actions.</p>
+                        </div>
+                        <div class="quality-card">
+                            <div class="quality-card-icon"><i class="fas fa-truck"></i></div>
+                            <h4 class="quality-card-title">Container Loading Supervision (CLS)</h4>
+                            <p class="quality-card-text">Container Loading Supervision (CLS) offers end-to-end oversight of the loading process, from container arrival to sealing. Throughout this service, every step is meticulously documented, including cargo placement and container condition, to prevent discrepancies and ensure full compliance with shipping requirements. This thorough record helps avoid unexpected issues upon goods receipt and enhances shipment transparency.</p>
+                        </div>
+                    </div>
+
+                    <div class="quality-image-full">
+                        <img src="https://img.dx.de5.net/1770533205312.jpg" alt="Container Loading Supervision">
+                    </div>
+
+                    <div class="quality-btn-container">
+                        <a href="#" onclick="showPage('contact')" class="quality-contact-btn">Contact us</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 侧边栏 -->
-            <div class="service-sidebar">
-                <a href="#" onclick="showPage('contact')">
-                    <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
-                </a>
+                
+                <div class="service-sidebar">
+                    <a href="#" onclick="showPage('contact')">
+                        <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- AUDIT 页面 -->
+    <!-- AUDIT 页面 (文字右移20px，同时保留左移240px和上移60px) 最终水平偏移：-240px + 20px = -220px，垂直偏移 -60px -->
     <section id="audit" class="page">
-        <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769868354807.jpg" alt="Audit Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <p class="hero-text">An audit can help you to make a smart decision</p>
+            <!-- 右移20px：水平方向由-240变为-220，垂直-60保持不变 -->
+            <div class="hero-content" style="transform: translate(calc(-50% - 220px), calc(-50% - 60px));">
+                <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
+                <!-- 分两行 -->
+                <p class="hero-text" style="white-space: nowrap;">An audit can help you<br>to make a smart decision</p>
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="container service-content">
-            <div class="service-main">
-                <h2 class="section-title">Audit Services</h2>
-                <div class="title-line" style="margin: 0 auto 30px;"></div>
-                
-                <div class="service-details">
-                    <p>Our factory audit services help you evaluate potential suppliers and ensure they meet your standards for quality, ethics, and reliability.</p>
-                    
-                    <h3>Types of Audits We Offer</h3>
-                    <p>1. <strong>Factory Capacity Audit:</strong> Evaluate production capacity, equipment, and workforce.</p>
-                    <p>2. <strong>Quality System Audit:</strong> Assess the factory's quality management system and procedures.</p>
-                    <p>3. <strong>Social Compliance Audit:</strong> Ensure factories comply with labor laws, safety standards, and ethical practices.</p>
-                    <p>4. <strong>Environmental Audit:</strong> Evaluate environmental practices and compliance with regulations.</p>
-                    
-                    <h3>Audit Benefits</h3>
-                    <ul>
-                        <li>Reduce risks in your supply chain</li>
-                        <li>Ensure ethical and compliant operations</li>
-                        <li>Verify supplier capabilities and certifications</li>
-                        <li>Identify improvement opportunities</li>
-                        <li>Build stronger, transparent supplier relationships</li>
-                    </ul>
-                    
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="#" onclick="showPage('contact')" class="btn">Contact us for Audit</a>
+        <div class="service-wrapper">
+            <div class="service-content">
+                <div class="service-main audit-section">
+                    <h2 class="audit-main-title">Audit Services</h2>
+                    <div class="audit-title-line"></div>
+
+                    <h3 class="audit-subtitle">What Is a Factory Audit?</h3>
+                    <p class="audit-text">A factory audit is a systematic and objective assessment carried out by a professional auditor to evaluate whether a supplier or vendor meets the criteria to be considered a qualified and reliable business partner. It is also designed to uncover any potential risks that could emerge during the course of future collaboration, such as quality issues, production delays, or non-compliance with legal and ethical standards. The scope of a factory audit extends well beyond a simple review of equipment and production capacity. It includes a thorough examination of how the factory organizes its production processes, ensures consistent product and service quality, and manages its workforce, including aspects such as working conditions, health and safety practices, and labor rights.</p>
+                    <p class="audit-text">For most companies seeking to establish a partnership with a supplier they have little or no prior experience with, conducting a factory audit before making a final decision has become an increasingly common and necessary step in the sourcing process. This is particularly true for multinational corporations and international brands, for whom a comprehensive factory audit—often including an ethical or social compliance component—is now considered a prerequisite to signing any formal contract. Such audits help ensure that suppliers align with the buyer's values and operational standards from the outset.</p>
+
+                    <div class="audit-image-500">
+                        <img src="https://img.dx.de5.net/1770970855717.jpg" alt="Factory Audit">
+                    </div>
+
+                    <p class="audit-text">On one hand, a factory audit helps clients build confidence in their collaboration with a supplier by providing an objective assessment of the supplier's capabilities and reliability. On the other hand, this diagnostic process enables clients to gain a clear understanding of the supplier's strengths and weaknesses, and more importantly, to identify and mitigate significant potential risks before they result in financial loss or reputational damage.</p>
+                    <p class="audit-text">During the audit, the auditor carefully verifies all critical points outlined in the audit checklist, as well as any additional concerns or special requirements raised by the client. These may include production processes, quality control systems, raw material sourcing, maintenance practices, and compliance with health, safety, and environmental standards. Following the site visit, a detailed and objective audit report is prepared based on the evidence and observations gathered. Our audit report includes not only a completed questionnaire accompanied by photographic evidence but also videos captured during key operations and professional observations and comments from the auditor. This comprehensive documentation ensures full transparency, supports informed decision-making, and serves as a valuable reference for continuous improvement and future collaboration.</p>
+
+                    <div class="audit-image-500">
+                        <img src="https://img.dx.de5.net/1770970863176.jpg" alt="Audit Process">
+                    </div>
+
+                    <h3 class="audit-subtitle">Types of Audit Services</h3>
+                    <p class="audit-text">In addition to inspection services, INSPECTION-CHINA offers a comprehensive range of audit services tailored to meet the diverse needs of our clients. All audits are conducted by our team of professional quality and management experts, who bring extensive industry experience and in-depth technical knowledge to every assessment.</p>
+                    <p class="audit-text">Our audit services are designed to help clients evaluate supplier capabilities, identify potential risks, and ensure compliance with relevant standards and requirements. Depending on the specific objectives and scope, we provide the following types of audits:</p>
+
+                    <div class="audit-card-grid">
+                        <div class="audit-card">
+                            <div class="audit-card-icon"><i class="fas fa-building"></i></div>
+                            <h4 class="audit-card-title">Simple Factory Audit (SFA)</h4>
+                            <p class="audit-card-text">The simple factory audit is a streamlined verification process that assesses a supplier's basic structure and qualifications prior to order placement. This type of audit is typically conducted for smaller facilities or those involved in less technically complex products and services. It focuses on essential operational aspects to ensure the supplier meets the fundamental requirements for a reliable business partnership. The approach is efficient and direct, providing a clear snapshot of a supplier's capability to handle basic production needs. For buyers, this serves as a cost-effective tool for initial supplier screening and risk identification before committing to larger volumes.</p>
+                        </div>
+                        <div class="audit-card">
+                            <div class="audit-card-icon"><i class="fas fa-cogs"></i></div>
+                            <h4 class="audit-card-title">Advanced Factory Audit (AFA)</h4>
+                            <p class="audit-card-text">The advanced factory audit is a comprehensive assessment based on the ISO9001 management system, offering a professional and detailed evaluation. This audit is typically applied to medium or large-scale suppliers and those offering technical products or complex services. It thoroughly examines quality management processes, operational consistency, and overall organizational effectiveness. By benchmarking against international standards, the audit provides deep insights into a supplier's long-term reliability and capacity for continuous improvement. As a result, it is an essential step for clients seeking to establish robust and scalable supply chain partnerships.</p>
+                        </div>
+                        <div class="audit-card">
+                            <div class="audit-card-icon"><i class="fas fa-users"></i></div>
+                            <h4 class="audit-card-title">Supplier Social Audit (SSA)</h4>
+                            <p class="audit-card-text">The supplier social audit evaluates a factory's compliance with international standards such as SA8000, ISO14001, ISO18001, and BSCI frameworks. This audit accurately reflects the factory's practices regarding worker rights, employee welfare, and overall working conditions. It also scrutinizes critical areas including occupational health, workplace security, environmental impact, and ethical management. By identifying strengths and areas for improvement, it helps ensure the supply chain aligns with global social responsibility norms. For international brands, this audit is indispensable for upholding corporate values and meeting stringent regulatory requirements.</p>
+                        </div>
+                        <div class="audit-card">
+                            <div class="audit-card-icon"><i class="fas fa-chart-line"></i></div>
+                            <h4 class="audit-card-title">Supplier Improvement Actions (SIA)</h4>
+                            <p class="audit-card-text">We also provide ongoing management improvement follow-up services to help factories rectify non-conformities identified during audits. Our experts work on-site to develop practical corrective action plans and implement sustainable solutions tailored to each supplier's needs. The frequency and scope of these follow-up engagements are flexibly determined based on client requirements and the complexity of issues uncovered. This proactive service ensures continuous progress and helps maintain elevated standards over the long term. By supporting suppliers in their development, we contribute to building more resilient, transparent, and trustworthy global supply chains.</p>
+                        </div>
+                    </div>
+
+                    <p class="audit-text">Our audit services are more than just assessments—they are strategic tools that empower you to make informed decisions, protect your brand reputation, and build a more resilient and responsible supply chain. Whether you are onboarding a new supplier, monitoring ongoing performance, or driving corrective actions, INSPECTION-CHINA delivers the clarity and confidence you need.</p>
+                    <p class="audit-text">Contact us today to learn how our tailored audit solutions can support your quality and compliance goals.</p>
+
+                    <div class="audit-image-full">
+                        <img src="https://img.dx.de5.net/1770970819727.jpg" alt="Continuous improvement">
+                        <div class="audit-full-overlay">
+                            <span>Competitiveness comes</span>
+                            <span>from continuous improvement</span>
+                        </div>
+                    </div>
+
+                    <div class="audit-btn-container">
+                        <a href="#" onclick="showPage('contact')" class="audit-contact-btn">Contact us</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 侧边栏 -->
-            <div class="service-sidebar">
-                <a href="#" onclick="showPage('contact')">
-                    <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
-                </a>
+
+                <div class="service-sidebar">
+                    <a href="#" onclick="showPage('contact')">
+                        <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SOURCING 页面 -->
+    <!-- SOURCING 页面 (保持不变) -->
     <section id="sourcing" class="page">
-        <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769868285154.jpg" alt="Sourcing Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 下移100px (保持不变) -->
+            <div class="hero-content" style="transform: translate(-50%, calc(-50% + 100px));">
+                <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">We are your new search engine for sourcing</p>
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="container service-content">
-            <div class="service-main">
-                <h2 class="section-title">Sourcing Services</h2>
-                <div class="title-line" style="margin: 0 auto 30px;"></div>
-                
-                <div class="service-details">
-                    <p>Our sourcing services connect you with reliable suppliers in China, saving you time and ensuring you get quality products at competitive prices.</p>
-                    
-                    <h3>Our Sourcing Process</h3>
-                    <p>1. <strong>Supplier Identification:</strong> Find qualified suppliers based on your specific requirements.</p>
-                    <p>2. <strong>Supplier Verification:</strong> Thorough background checks and capability assessments.</p>
-                    <p>3. <strong>Sample Procurement:</strong> Source and evaluate product samples before placing bulk orders.</p>
-                    <p>4. <strong>Negotiation Support:</strong> Assist with price negotiations and contract terms.</p>
-                    
-                    <h3>Why Choose Our Sourcing Services</h3>
-                    <ul>
-                        <li>Extensive network of verified suppliers</li>
-                        <li>Save time and reduce sourcing costs</li>
-                        <li>Quality assurance from the start</li>
-                        <li>Cultural and language bridge</li>
-                        <li>Ongoing supplier relationship management</li>
-                    </ul>
-                    
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="#" onclick="showPage('contact')" class="btn">Contact us for Sourcing</a>
+        <div class="service-wrapper">
+            <div class="service-content">
+                <div class="service-main sourcing-section">
+                    <h2 class="sourcing-main-title">Sourcing Services</h2>
+                    <div class="sourcing-title-line"></div>
+
+                    <h3 class="sourcing-subtitle">Proudct sourcing</h3>
+                    <p class="sourcing-text">Product sourcing is one of the most valued services we offer, especially for clients taking their first steps into doing business with China. As companies look to expand globally, establishing a reliable supply chain in China can be both a strategic advantage and a significant operational challenge.</p>
+                    <p class="sourcing-text">Due to language barriers and cultural differences, many overseas buyers find it challenging to identify reliable Chinese suppliers or source the right products. Miscommunication often leads to misunderstandings about product specifications, quality standards, or pricing structures. In addition, gathering all the necessary information—such as supplier credentials, factory capabilities, compliance certifications, and market pricing—can be overwhelming for clients unfamiliar with the local landscape. Without a structured approach, these challenges can result in costly mistakes and project delays.</p>
+                    <p class="sourcing-text">With the support of INSPECTION-CHINA’s experienced sourcing team, you can not only find the right suppliers and products in China but also save valuable time and reduce costs. Our team conducts thorough supplier verification, negotiates pricing on your behalf, and coordinates communication between you and shortlisted vendors. Whether you are looking for custom-manufactured goods, off-the-shelf products, or raw materials, we tailor our sourcing approach to your specific quality requirements and business objectives.</p>
+                    <p class="sourcing-text">Since the establishment of our sourcing division, we have partnered with numerous entrepreneurs who continue to rely on INSPECTION-CHINA to support and scale their business success. By combining on-the-ground expertise with a commitment to transparency, we help our clients build long-term, trust-based relationships with their Chinese partners. From initial supplier shortlisting to pre-shipment inspections and logistics coordination, our end-to-end sourcing solutions are designed to ensure that your supply chain remains efficient, compliant, and competitive.</p>
+
+                    <div class="sourcing-card-grid">
+                        <div class="sourcing-card">
+                            <div class="sourcing-card-icon"><i class="fas fa-cubes"></i></div>
+                            <h4 class="sourcing-card-title">Speciality in various domains</h4>
+                            <p class="sourcing-card-text">Good understanding of client requirements</p>
+                        </div>
+                        <div class="sourcing-card">
+                            <div class="sourcing-card-icon"><i class="fas fa-industry"></i></div>
+                            <h4 class="sourcing-card-title">Industry expertise</h4>
+                            <p class="sourcing-card-text">Strong and proven grasp of technical issues</p>
+                        </div>
+                        <div class="sourcing-card">
+                            <div class="sourcing-card-icon"><i class="fas fa-award"></i></div>
+                            <h4 class="sourcing-card-title">Rich experience</h4>
+                            <p class="sourcing-card-text">Consistently high cost-performance in targeted research</p>
+                        </div>
+                        <div class="sourcing-card">
+                            <div class="sourcing-card-icon"><i class="fas fa-comments"></i></div>
+                            <h4 class="sourcing-card-title">Skilled communication</h4>
+                            <p class="sourcing-card-text">Effective business negotiation with strong price sensitivity</p>
+                        </div>
+                    </div>
+
+                    <p class="sourcing-text">To ensure a standardized and efficient sourcing process, we have established the following procedure:</p>
+
+                    <div class="sourcing-steps">
+                        <div class="step-item"><span class="step-icon"><i class="fas fa-check"></i></span><span class="step-text">Step 1: Evaluate the client's request and clarify all relevant details</span></div>
+                        <div class="step-item"><span class="step-icon"><i class="fas fa-check"></i></span><span class="step-text">Step 2: Develop a comprehensive sourcing plan based on the client's specifications</span></div>
+                        <div class="step-item"><span class="step-icon"><i class="fas fa-check"></i></span><span class="step-text">Step 3: Execute the sourcing process and keep the client regularly updated</span></div>
+                        <div class="step-item"><span class="step-icon"><i class="fas fa-check"></i></span><span class="step-text">Step 4: Deliver a sourcing summary including all collected information</span></div>
+                    </div>
+
+                    <p class="sourcing-text">For each sourcing project, we provide at least three qualified suppliers or product options in the summary, along with detailed information. Additionally, we can supply other documents or data upon request to meet any special requirements.</p>
+
+                    <h3 class="sourcing-subtitle">Sample Customization</h3>
+                    <p class="sourcing-text">Sample customization is a value-added service available to clients who wish to verify product quality and functionality based on their own modifications. This service is particularly beneficial for buyers seeking to differentiate their products in the market or test specific features before committing to bulk production.</p>
+                    <p class="sourcing-text">Clients can develop their own design by building upon the existing products of potential suppliers. Whether the goal is to adjust dimensions, incorporate new materials, modify packaging, or add branding elements, our team ensures that your requirements are clearly communicated and understood by the supplier from the very beginning.</p>
+                    <p class="sourcing-text">To minimize the risk of errors, INSPECTION-CHINA will coordinate closely with the suppliers and monitor the entire research and development process. Our local presence enables us to conduct onsite visits when necessary, verify progress firsthand, and identify potential issues early. Regular updates on the development status—including photos, videos, or technical reports—will be provided to the client throughout the development cycle.</p>
+                    <p class="sourcing-text">Once the prototype is completed, we will arrange prompt shipment to the client's designated address. Upon request, we can also conduct a preliminary quality check before shipping to ensure that the sample meets the agreed specifications, saving clients the time and cost of receiving and returning unsatisfactory samples.</p>
+                    <p class="sourcing-text">This convenient service not only helps clients reduce costs but also ensures business confidentiality prior to the placement of final orders. By keeping design iterations and supplier communications within a controlled process, we help protect your product concepts from being disclosed prematurely. Furthermore, successful sample customization reduces the risk of misunderstandings during mass production, paving the way for smoother order fulfillment and stronger supplier relationships.</p>
+                    <p class="sourcing-text">Whether you are launching a new product line or refining an existing one, our sample customization service offers the flexibility, oversight, and peace of mind you need to move forward with confidence.</p>
+
+                    <div class="sourcing-image-full">
+                        <img src="https://img.dx.de5.net/1770993826475.jpg" alt="Sample Customization">
+                    </div>
+
+                    <div class="sourcing-btn-container">
+                        <a href="#" onclick="showPage('contact')" class="sourcing-contact-btn">Contact us</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 侧边栏 -->
-            <div class="service-sidebar">
-                <a href="#" onclick="showPage('contact')">
-                    <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
-                </a>
+
+                <div class="service-sidebar">
+                    <a href="#" onclick="showPage('contact')">
+                        <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- TRADE ASSISTANCE 页面 -->
+    <!-- TRADE 页面 (左移8px，保持不变) -->
     <section id="trade" class="page">
-        <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769868369407.jpg" alt="Trade Assistance Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 左移8px -->
+            <div class="hero-content" style="transform: translate(calc(-50% - 8px), -50%);">
+                <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">The right step to your success</p>
             </div>
         </div>
 
-        <!-- 主要内容 -->
-        <div class="container service-content">
-            <div class="service-main">
-                <h2 class="section-title">Trade Assistance Services</h2>
-                <div class="title-line" style="margin: 0 auto 30px;"></div>
-                
-                <div class="service-details">
-                    <p>Our trade assistance services provide comprehensive support throughout your business operations in China, from order management to logistics and business travel.</p>
-                    
-                    <h3>Our Trade Assistance Services</h3>
-                    <p>1. <strong>Order Following-up:</strong> Regular monitoring of production progress and timely updates on any issues.</p>
-                    <p>2. <strong>Logistics Management:</strong> Comprehensive shipping and logistics coordination for timely delivery.</p>
-                    <p>3. <strong>Business Travel Assistance:</strong> Full support for business trips including interpretation and itinerary planning.</p>
-                    <p>4. <strong>Documentation Support:</strong> Assistance with customs documentation, certificates, and compliance paperwork.</p>
-                    
-                    <h3>Benefits of Our Trade Assistance</h3>
-                    <ul>
-                        <li>One-stop solution for all your China operations</li>
-                        <li>Experienced team familiar with local business practices</li>
-                        <li>Cost-effective solutions that save you time and money</li>
-                        <li>Risk mitigation through proper documentation and compliance</li>
-                        <li>Multilingual support for seamless communication</li>
-                    </ul>
-                    
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="#" onclick="showPage('contact')" class="btn">Contact us for Trade Assistance</a>
+        <div class="service-wrapper">
+            <div class="service-content">
+                <div class="service-main trade-section">
+                    <h2 class="trade-main-title">Trade assistance</h2>
+                    <div class="trade-title-line"></div>
+
+                    <p class="trade-text">With INSPECTION-CHINA's quality control, audit, and sourcing services, many overseas importers and buyers can effectively ensure product quality when working with their Chinese suppliers. However, quality assurance is just one piece of the puzzle when it comes to managing a supply chain in China. There remain several critical challenges that need to be addressed throughout the entire procurement process:</p>
+
+                    <div class="trade-checklist">
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">I need to request samples from different suppliers—who can help coordinate the collection and shipment?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Has my supplier fully understood all the technical specifications?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Will my supplier strictly follow my instructions during production?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Are there any issues arising during the production process?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Why is no one answering my calls or replying to my emails?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Has my order actually been scheduled for production?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">Where can I find a reliable freight forwarder to handle transport and customs clearance?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">What documents should I prepare for customs clearance?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">I’m planning to visit my supplier in China—who can assist me with travel arrangements?</span></div>
+                        <div class="trade-check-item"><span class="trade-check-icon"><i class="fas fa-check"></i></span><span class="trade-check-text">I will attend the Canton Fair next month—can I find an interpreter in advance?</span></div>
+                    </div>
+
+                    <p class="trade-text">These are just a few examples of the real-world concerns that importers face on a daily basis—concerns that, if left unaddressed, can lead to costly delays, miscommunication, and compromised product quality. Navigating the complexities of the Chinese market requires more than just inspection services; it demands a trusted local partner who understands both the language and the landscape.</p>
+                    <p class="trade-text">That's where INSPECTION-CHINA goes beyond inspection. Our comprehensive trade assistance services are designed to support you at every stage of your sourcing journey—from supplier communication and sample coordination to production follow-up, logistics support, and even on-the-ground travel assistance. We don't just check your products—we help you manage your entire China supply chain with confidence and peace of mind.</p>
+                    <p class="trade-text">In response to the recurring challenges our clients often experience when partnering with Chinese suppliers, we have proactively developed the following specialized services, each designed to mitigate risk and streamline your supply chain：</p>
+
+                    <div class="trade-card-grid">
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1769312758691.jpg" alt="Order following-up"><div class="trade-card-content"><div class="trade-card-title">Order following-up</div><div class="trade-card-text">Monitor production status and provide regular client updates</div></div></div>
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1771036102429.jpg" alt="Sample collection and sending"><div class="trade-card-content"><div class="trade-card-title">Sample collection and sending</div><div class="trade-card-text">Consolidate samples from multiple suppliers and ship them to you</div></div></div>
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1769312760727.jpg" alt="Logistic Service"><div class="trade-card-content"><div class="trade-card-title">Logistic Service</div><div class="trade-card-text">Manage your shipments for a safe, efficient, and cost-effective delivery</div></div></div>
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1769312762763.jpg" alt="Business travel & visit"><div class="trade-card-content"><div class="trade-card-title">Business travel & visit</div><div class="trade-card-text">Arrange well-planned visits and comfortable stays for your China trip</div></div></div>
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1771036104267.jpg" alt="Translation and interpretation"><div class="trade-card-content"><div class="trade-card-title">Translation and interpretation</div><div class="trade-card-text">Bridge language gaps in technical documents and business meetings</div></div></div>
+                        <div class="trade-card"><img src="https://img.dx.de5.net/1771036106048.jpg" alt="Other Customized Services"><div class="trade-card-content"><div class="trade-card-title">Other Customized Services</div><div class="trade-card-text">Tailor our services to meet your unique requirements and specifications</div></div></div>
+                    </div>
+
+                    <p class="trade-text">Don't let unanswered questions disrupt your business. Partner with INSPECTION-CHINA today and experience a smoother, safer, and more efficient way to source from China. Contact us now to learn how we can support your next order from start to finish.</p>
+
+                    <div class="trade-image-full">
+                        <img src="https://img.dx.de5.net/1771035981433.jpg" alt="Trade assistance banner">
+                    </div>
+
+                    <div class="trade-btn-container">
+                        <a href="#" onclick="showPage('contact')" class="trade-contact-btn">Contact us</a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 侧边栏 -->
-            <div class="service-sidebar">
-                <a href="#" onclick="showPage('contact')">
-                    <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
-                </a>
+
+                <div class="service-sidebar">
+                    <a href="#" onclick="showPage('contact')">
+                        <img src="https://img.dx.de5.net/1769441852243.jpg" alt="Contact us">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT 页面 -->
+    <!-- CONTACT 页面 (文字下移50px，同时保留左移380px（即左移400+右移20后的净左移380）和之前的垂直偏移-10px，现在再下移50px => 垂直偏移 -10+50 = +40px，即下移40px) -->
     <section id="contact" class="page">
         <!-- Hero Banner -->
         <div class="hero-banner">
             <img src="https://img.dx.de5.net/1769868336384.jpeg" alt="Contact Hero Banner">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <!-- 左移380px，垂直方向为 calc(-50% + 40px) (下移40px) -->
+            <div class="hero-content" style="transform: translate(calc(-50% - 380px), calc(-50% + 40px));">
+                <h1 class="hero-title"><span class="green">INSPECTION</span> <span class="orange">CHINA</span></h1>
                 <p class="hero-text">Get in touch with us</p>
             </div>
         </div>
 
-        <!-- 联系表单 -->
-        <div class="container contact-form-container">
-            <div class="contact-form">
-                <h2 class="section-title">Contact Us</h2>
-                <div class="title-line" style="margin: 0 auto 30px;"></div>
-                <p class="section-text" style="text-align: left; margin-bottom: 30px;">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        <!-- Contact Section 主要内容区 -->
+        <div class="container contact-section">
+            <!-- 标题: How to reach us + 橙色线段 -->
+            <h2 class="contact-main-title">How to reach us</h2>
+            <div class="contact-title-line"></div>
+            
+            <!-- 描述文字左右对齐，字号16px -->
+            <p class="contact-description">
+                We would be happy to answer any questions you may have, and our team is available for a free consultation at any time.
+            </p>
+            
+            <!-- 联系信息扁平卡片网格 (三张卡片) -->
+            <div class="contact-card-grid">
+                <!-- 地址卡片 -->
+                <div class="contact-card-item">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-card-title">Address</div>
+                    <div class="contact-card-detail">Shanghai, China</div>
+                </div>
                 
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" required>
+                <!-- 电话卡片 -->
+                <div class="contact-card-item">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone-alt"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Your Email *</label>
-                        <input type="email" id="email" required>
+                    <div class="contact-card-title">Phone</div>
+                    <div class="contact-card-detail">+86 173 69 50 04 81</div>
+                </div>
+                
+                <!-- 邮件卡片 -->
+                <div class="contact-card-item">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service Interested In</label>
-                        <select id="service">
-                            <option value="">Select a service</option>
-                            <option value="inspection">Inspection</option>
-                            <option value="audit">Audit</option>
-                            <option value="sourcing">Sourcing</option>
-                            <option value="trade">Trade Assistance</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message *</label>
-                        <textarea id="message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
+                    <div class="contact-card-title">Email</div>
+                    <div class="contact-card-detail">sales@inspection-china.net</div>
+                </div>
             </div>
             
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                
-                <div class="contact-detail">
-                    <h4>Address</h4>
-                    <p>Shanghai, China</p>
-                </div>
-                
-                <div class="contact-detail">
-                    <h4>Phone</h4>
-                    <p>+86 173 69 50 04 81</p>
-                </div>
-                
-                <div class="contact-detail">
-                    <h4>Email</h4>
-                    <p>sales@inspection-china.net</p>
-                </div>
-                
-                <div class="contact-detail">
-                    <h4>Business Hours</h4>
-                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p>Saturday: 10:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
-                </div>
+            <!-- 全宽图片 + 顶部文字 "It’s time to" (字号40号，带阴影，下移10px已在样式中实现) -->
+            <div class="contact-image-full">
+                <img src="https://img.dx.de5.net/1771045469726.jpg" alt="Contact bottom">
+                <div class="contact-image-overlay-text">It’s time to</div>
             </div>
         </div>
     </section>
 
-    <!-- 页脚 -->
+    <!-- 页脚 (保持不变) -->
     <footer>
         <div class="container">
             <div class="footer-container">
                 <div class="footer-logo">
                     <img src="https://img.dx.de5.net/1769307539845.png" alt="INSPECTION CHINA Logo">
+                    <!-- 新增描述文字 -->
+                    <p>Quality Inspection Services in China: Reliable quality control, factory audits, sourcing, order follow-up, and logistics services for your supply chain.</p>
                 </div>
                 
                 <div class="footer-links">
@@ -1541,7 +2517,7 @@
             // 滚动到顶部
             window.scrollTo(0, 0);
             
-            return false; // 阻止链接默认行为
+            return false;
         }
         
         // 导航栏滚动效果
@@ -1555,36 +2531,24 @@
         });
         
         // Testimonials 轮播
-        let testimonialIndex = 0;
-        const testimonialSlides = document.querySelector('.testimonial-slides');
-        const testimonialSlideCount = document.querySelectorAll('.testimonial-slide').length;
+        let currentTestimonial = 0;
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const slidesContainer = document.querySelector('.testimonial-slides');
         
-        function rotateTestimonials() {
-            testimonialIndex++;
-            if (testimonialIndex >= testimonialSlideCount) {
-                testimonialIndex = 0;
+        function showNextTestimonial() {
+            if (testimonialSlides.length > 0) {
+                currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+                slidesContainer.style.transform = `translateX(-${currentTestimonial * 100}%)`;
             }
-            testimonialSlides.style.transform = `translateX(-${testimonialIndex * 100}%)`;
         }
         
-        // 每5秒切换一次
-        setInterval(rotateTestimonials, 5000);
-        
-        // 表单提交处理
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
+        setInterval(showNextTestimonial, 5000);
         
         // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 设置初始导航栏状态
             if (window.scrollY > 50) {
                 document.querySelector('.navbar').classList.add('scrolled');
             }
-            
-            // 确保HOME页面是活动状态
             showPage('home');
         });
     </script>
